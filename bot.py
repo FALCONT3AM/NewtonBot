@@ -1,6 +1,7 @@
 # coding=utf8
 import telebot as NewtonBot
 import json
+import os
 from random import randint as Newton
 from requests import get as GetNewton
 from telebot.types import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, ReplyKeyboardMarkup
@@ -619,6 +620,7 @@ def start(message):
                         files.seek(0)
                         json.dump(data, files)
                         files.truncate()
+                        os.system('python3 run.py')
                     else:
                         bot.send_message(message.from_user.id, 'المعرف خاطأ')
                     json.dump('Newton', open('BotImport.json', 'w'))
@@ -636,6 +638,7 @@ def start(message):
                         json.dump('Newton', open('BotImport.json', 'w'))
                         bot.send_message(
                             file["ID_SUDO"], 'تم تحويل ملكيت البوت اليك ارسل /start لاضهار الاوامر لك')
+                        os.system('python3 run.py')
                     except Exception:
                         bot.send_message(message.from_user.id, 'الايدي خاطأ')
                         json.dump('Newton', open('BotImport.json', 'w'))
