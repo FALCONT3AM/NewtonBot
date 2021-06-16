@@ -6,7 +6,7 @@ from requests import get as GetNewton
 from telebot.types import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, ReplyKeyboardMarkup
 print("+--- Newton\n\n'|.   '|'                       .                    \n |'|   |    ....  ... ... ... .||.    ...   .. ...   \n | '|. |  .|...||  ||  ||  |   ||   .|  '|.  ||  ||  \n |   |||  ||        ||| |||    ||   ||   ||  ||  ||  \n.|.   '|   '|...'    |   |     '|.'  '|..|' .||. ||. \n\n+--- Newton")
 file = json.load(open('sudo.json'))
-bot = NewtonBot.TeleBot(file['TOKIN'])
+bot = NewtonBot.TeleBot(json.load(open('tokin.json','r'))['TOKIN'])
 
 
 def NewtonBows(text):
