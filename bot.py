@@ -6,7 +6,8 @@ from requests import get as GetNewton
 from telebot.types import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, ReplyKeyboardMarkup
 print("+--- Newton\n\n'|.   '|'                       .                    \n |'|   |    ....  ... ... ... .||.    ...   .. ...   \n | '|. |  .|...||  ||  ||  |   ||   .|  '|.  ||  ||  \n |   |||  ||        ||| |||    ||   ||   ||  ||  ||  \n.|.   '|   '|...'    |   |     '|.'  '|..|' .||. ||. \n\n+--- Newton")
 file = json.load(open('sudo.json'))
-bot = NewtonBot.TeleBot(json.load(open('tokin.json','r'))['TOKIN'])
+tokin = json.load(open('tokin.json','r'))['TOKIN']
+bot = NewtonBot.TeleBot(tokin)
 
 
 def NewtonBows(text):
@@ -598,7 +599,7 @@ def start(message):
         ‎‏ㅤ⠀⠀⠀''']
 # End var
     if message.chat.type == 'private':
-        if GetNewton('https://api.telegram.org/bot'+file['TOKIN']+'/getChatMember?chat_id='+file['CHAT']+'&user_id='+str(message.from_user.id)).json()['result']['status'] == 'left':
+        if GetNewton('https://api.telegram.org/bot'+tokin+'/getChatMember?chat_id='+file['CHAT']+'&user_id='+str(message.from_user.id)).json()['result']['status'] == 'left':
             bot.send_message(message.from_user.id, '• اهلا بك، '+message.from_user.first_name+'\n\n- في بوت الزخرفةالشامل؛\n\n- استخدام البوت عليك الاشتراك اولاً 🧸💕\n\n- قناة البوت  ' +
                              file['CHAT']+' 💘🌈 \n\n\n-- -- -- -- - -- -- -- -- -- -- -- -- --\n𝑫𝑬𝑴𝑶𝑵𝑰𝑶𝑺 ༯ 𝒔𝒐𝒖𝒓𝒄𝒆')
         else:
@@ -763,7 +764,7 @@ def start(message):
 @bot.callback_query_handler(func=lambda call: True)
 def callback(call):
     NameChat = bot.get_chat(file['CHAT']).title
-    if GetNewton('https://api.telegram.org/bot'+file['TOKIN']+'/getChatMember?chat_id='+file['CHAT']+'&user_id='+str(call.from_user.id)).json()['result']['status'] == 'left':
+    if GetNewton('https://api.telegram.org/bot'+tokin+'/getChatMember?chat_id='+file['CHAT']+'&user_id='+str(call.from_user.id)).json()['result']['status'] == 'left':
         bot.send_message(call.from_user.id, '• اهلا بك، '+call.from_user.first_name+'\n\n- في بوت الزخرفةالشامل؛\n\n- استخدام البوت عليك الاشتراك اولاً 🧸💕\n\n- قناة البوت  ' +
                          file['CHAT']+' 💘🌈 \n\n\n-- -- -- -- - -- -- -- -- -- -- -- -- --\n𝑫𝑬𝑴𝑶𝑵𝑰𝑶𝑺 ༯ 𝒔𝒐𝒖𝒓𝒄𝒆')
     else:
