@@ -670,10 +670,6 @@ def start(message):
                     markup.row(itembtn3, itembtn4, itembtn5)
                     markup.row(itembtn6, itembtn7)
                     markup.row(itembtn8)
-                    keyboard = [[InlineKeyboardButton(message.from_user.first_name, callback_data='#')], [InlineKeyboardButton('زخرفــهـ الاســم', callback_data='ZH'), InlineKeyboardButton('بايو انــستا', callback_data='boy')], [InlineKeyboardButton('رمــوز وارقــام', callback_data='Num And Pass')], [InlineKeyboardButton('اسماء جاهزه', callback_data='Name Completing'), InlineKeyboardButton(
-                        'اسماء ببجي', callback_data='Name PUBG')], [InlineKeyboardButton('جمالي من 10', callback_data='%')], [InlineKeyboardButton('نبذه جاهزه', callback_data='boyn'), InlineKeyboardButton('اختصارات', callback_data='Shortcuts')], [InlineKeyboardButton(NameChat, url='https://t.me/'+file['CHAT'].replace('@', ''))]]
-                    bot.send_message(message.from_user.id, '• اهلا بك، '+message.from_user.first_name +
-                                     '\n\n- في بوت الزخرفةالشامل؛)\n\n- يمكنك الزخرفه باللغه الانكليزيه واللغه العربيه 🧸💕\n\n- البوت الاول من نوعه في التلكرام  💘🌈 \n\n-- -- -- -- - -- -- -- -- -- -- -- -- --\n𝑫𝑬𝑴𝑶𝑵𝑰𝑶𝑺 ༯ 𝒔𝒐𝒖𝒓𝒄𝒆', reply_markup=InlineKeyboardMarkup(keyboard))
                     bot.send_message(
                         message.from_user.id, "مرحباً عزيزي المطور اليك الاوامر", reply_markup=markup)
                 elif message.text == 'تغير قناة الاشتراك الاجباري':
@@ -706,64 +702,63 @@ def start(message):
                 elif message.text == 'اخفاء الكيبورد':
                     bot.send_message(message.from_user.id, 'تم اخفاء الكيبورد لأضهار \n الكيبورد ارسل /start',
                                      reply_markup=ReplyKeyboardRemove(selective=False))
-            else:
-                if message.text == '/start':
-                    keyboard = [[InlineKeyboardButton(message.from_user.first_name, callback_data='#')], [InlineKeyboardButton('زخرفــهـ الاســم', callback_data='ZH'), InlineKeyboardButton('بايو انــستا', callback_data='boy')], [InlineKeyboardButton('رمــوز وارقــام', callback_data='Num And Pass')], [InlineKeyboardButton('اسماء جاهزه', callback_data='Name Completing'), InlineKeyboardButton(
-                        'اسماء ببجي', callback_data='Name PUBG')], [InlineKeyboardButton('جمالي من 10', callback_data='%')], [InlineKeyboardButton('نبذه جاهزه', callback_data='boyn'), InlineKeyboardButton('اختصارات', callback_data='Shortcuts')], [InlineKeyboardButton(NameChat, url='https://t.me/'+file['CHAT'].replace('@', ''))]]
-                    bot.send_message(message.from_user.id, '• اهلا بك، '+message.from_user.first_name +
-                                     '\n\n- في بوت الزخرفةالشامل؛)\n\n- يمكنك الزخرفه باللغه الانكليزيه واللغه العربيه 🧸💕\n\n- البوت الاول من نوعه في التلكرام  💘🌈 \n\n-- -- -- -- - -- -- -- -- -- -- -- -- --\n𝑫𝑬𝑴𝑶𝑵𝑰𝑶𝑺 ༯ 𝒔𝒐𝒖𝒓𝒄𝒆', reply_markup=InlineKeyboardMarkup(keyboard))
-                    ID_Newton(message.from_user.id)
-                elif id_file+'ZH' in json.load(open('ID.json', 'r')):
+            if message.text == '/start':
+                keyboard = [[InlineKeyboardButton(message.from_user.first_name, callback_data='#')], [InlineKeyboardButton('زخرفــهـ الاســم', callback_data='ZH'), InlineKeyboardButton('بايو انــستا', callback_data='boy')], [InlineKeyboardButton('رمــوز وارقــام', callback_data='Num And Pass')], [InlineKeyboardButton('اسماء جاهزه', callback_data='Name Completing'), InlineKeyboardButton(
+                    'اسماء ببجي', callback_data='Name PUBG')], [InlineKeyboardButton('جمالي من 10', callback_data='%')], [InlineKeyboardButton('نبذه جاهزه', callback_data='boyn'), InlineKeyboardButton('اختصارات', callback_data='Shortcuts')], [InlineKeyboardButton(NameChat, url='https://t.me/'+file['CHAT'].replace('@', ''))]]
+                bot.send_message(message.from_user.id, '• اهلا بك، '+message.from_user.first_name +
+                                    '\n\n- في بوت الزخرفةالشامل؛)\n\n- يمكنك الزخرفه باللغه الانكليزيه واللغه العربيه 🧸💕\n\n- البوت الاول من نوعه في التلكرام  💘🌈 \n\n-- -- -- -- - -- -- -- -- -- -- -- -- --\n𝑫𝑬𝑴𝑶𝑵𝑰𝑶𝑺 ༯ 𝒔𝒐𝒖𝒓𝒄𝒆', reply_markup=InlineKeyboardMarkup(keyboard))
+                ID_Newton(message.from_user.id)
+            elif id_file+'ZH' in json.load(open('ID.json', 'r')):
+                bot.send_message(message.from_user.id,
+                                    NewtonBows(Newton1)+NewtonShapes())
+                bot.send_message(message.from_user.id,
+                                    NewtonBows(Newton2)+NewtonShapes())
+                bot.send_message(message.from_user.id,
+                                    NewtonBows(Newton3)+NewtonShapes())
+                bot.send_message(message.from_user.id,
+                                    NewtonBows(Newton4)+NewtonShapes())
+                bot.send_message(message.from_user.id,
+                                    NewtonBows(Newton5)+NewtonShapes())
+                bot.send_message(message.from_user.id,
+                                    NewtonBows(Newton6)+NewtonShapes())
+                bot.send_message(message.from_user.id,
+                                    NewtonBows(Newton7)+NewtonShapes())
+                bot.send_message(message.from_user.id,
+                                    NewtonBows(Newton8)+NewtonShapes())
+                bot.send_message(message.from_user.id,
+                                    NewtonBows(Newton9)+NewtonShapes())
+                bot.send_message(message.from_user.id,
+                                    NewtonBows(Newton10)+NewtonShapes())
+                bot.send_message(message.from_user.id,
+                                    NewtonBows(Newton11)+NewtonShapes())
+                bot.send_message(message.from_user.id,
+                                    NewtonBows(Newton12)+NewtonShapes())
+                bot.send_message(message.from_user.id,
+                                    NewtonBows(Newton13)+NewtonShapes())
+                bot.send_message(message.from_user.id,
+                                    NewtonBows(Newton14)+NewtonShapes())
+                bot.send_message(message.from_user.id,
+                                    NewtonBows(Newton15)+NewtonShapes())
+                bot.send_message(message.from_user.id,
+                                    NewtonBows(Newton16)+NewtonShapes())
+                bot.send_message(message.from_user.id,
+                                    NewtonBows(Newton17)+NewtonShapes())
+                bot.send_message(message.from_user.id,
+                                    NewtonBows(Newton18)+NewtonShapes())
+                bot.send_message(message.from_user.id,
+                                    NewtonBows(Newton19)+NewtonShapes())
+                bot.send_message(message.from_user.id,
+                                    NewtonBows(Newton20)+NewtonShapes())
+                Remove_ID(id_file, 'ZH')
+            elif id_file+'boy' in json.load(open('ID.json', 'r')):
+                NewtonNum = 0
+                while True:
                     bot.send_message(message.from_user.id,
-                                     NewtonBows(Newton1)+NewtonShapes())
-                    bot.send_message(message.from_user.id,
-                                     NewtonBows(Newton2)+NewtonShapes())
-                    bot.send_message(message.from_user.id,
-                                     NewtonBows(Newton3)+NewtonShapes())
-                    bot.send_message(message.from_user.id,
-                                     NewtonBows(Newton4)+NewtonShapes())
-                    bot.send_message(message.from_user.id,
-                                     NewtonBows(Newton5)+NewtonShapes())
-                    bot.send_message(message.from_user.id,
-                                     NewtonBows(Newton6)+NewtonShapes())
-                    bot.send_message(message.from_user.id,
-                                     NewtonBows(Newton7)+NewtonShapes())
-                    bot.send_message(message.from_user.id,
-                                     NewtonBows(Newton8)+NewtonShapes())
-                    bot.send_message(message.from_user.id,
-                                     NewtonBows(Newton9)+NewtonShapes())
-                    bot.send_message(message.from_user.id,
-                                     NewtonBows(Newton10)+NewtonShapes())
-                    bot.send_message(message.from_user.id,
-                                     NewtonBows(Newton11)+NewtonShapes())
-                    bot.send_message(message.from_user.id,
-                                     NewtonBows(Newton12)+NewtonShapes())
-                    bot.send_message(message.from_user.id,
-                                     NewtonBows(Newton13)+NewtonShapes())
-                    bot.send_message(message.from_user.id,
-                                     NewtonBows(Newton14)+NewtonShapes())
-                    bot.send_message(message.from_user.id,
-                                     NewtonBows(Newton15)+NewtonShapes())
-                    bot.send_message(message.from_user.id,
-                                     NewtonBows(Newton16)+NewtonShapes())
-                    bot.send_message(message.from_user.id,
-                                     NewtonBows(Newton17)+NewtonShapes())
-                    bot.send_message(message.from_user.id,
-                                     NewtonBows(Newton18)+NewtonShapes())
-                    bot.send_message(message.from_user.id,
-                                     NewtonBows(Newton19)+NewtonShapes())
-                    bot.send_message(message.from_user.id,
-                                     NewtonBows(Newton20)+NewtonShapes())
-                    Remove_ID(id_file, 'ZH')
-                elif id_file+'boy' in json.load(open('ID.json', 'r')):
-                    NewtonNum = 0
-                    while True:
-                        bot.send_message(message.from_user.id,
-                                         Newtonboy[Newton(0, len(Newtonboy)-1)].replace('NewtonText', text))
-                        if NewtonNum == 20:
-                            break
-                        NewtonNum = NewtonNum + 1
-                    Remove_ID(id_file, 'boy')
+                                        Newtonboy[Newton(0, len(Newtonboy)-1)].replace('NewtonText', text))
+                    if NewtonNum == 20:
+                        break
+                    NewtonNum = NewtonNum + 1
+                Remove_ID(id_file, 'boy')
 
 
 @bot.callback_query_handler(func=lambda call: True)
