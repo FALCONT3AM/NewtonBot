@@ -620,10 +620,11 @@ def start(message):
                         files.seek(0)
                         json.dump(data, files)
                         files.truncate()
+                        json.dump('Newton', open('BotImport.json', 'w'))
                         os.system('python3 run.py')
                     else:
                         bot.send_message(message.from_user.id, 'المعرف خاطأ')
-                    json.dump('Newton', open('BotImport.json', 'w'))
+                        json.dump('Newton', open('BotImport.json', 'w'))
                 elif message.text and json.load(open('BotImport.json', 'r')) == 'ID':
                     try:
                         ID_s = str(message.text)
@@ -638,6 +639,7 @@ def start(message):
                         json.dump('Newton', open('BotImport.json', 'w'))
                         bot.send_message(
                             file["ID_SUDO"], 'تم تحويل ملكيت البوت اليك ارسل /start لاضهار الاوامر لك')
+                        json.dump('Newton', open('BotImport.json', 'w'))
                         os.system('python3 run.py')
                     except Exception:
                         bot.send_message(message.from_user.id, 'الايدي خاطأ')

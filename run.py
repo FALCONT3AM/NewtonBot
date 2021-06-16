@@ -1,2 +1,3 @@
+import json
 import os
-os.system('python3 bot.py')
+os.system('screen -d -m bash -c " python3 bot.py"')
