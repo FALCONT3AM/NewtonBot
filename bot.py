@@ -27,7 +27,7 @@ def NewtonShapes():
 def Add_ID(ID, VAR):
     with open('ID.json', 'r+') as file:
         data = json.load(file)
-        if ID not in data:
+        if str(ID)+VAR not in data:
             data.append(str(ID)+VAR)
             file.seek(0)
             json.dump(data, file)
