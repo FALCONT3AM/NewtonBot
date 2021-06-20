@@ -1,14 +1,55 @@
 # coding=utf8
 import telebot as NewtonBot
 import json
-import os
 from random import randint as Newton
 from requests import get as GetNewton
 from telebot.types import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, ReplyKeyboardMarkup
 print("+--- Newton\n\n'|.   '|'                       .                    \n |'|   |    ....  ... ... ... .||.    ...   .. ...   \n | '|. |  .|...||  ||  ||  |   ||   .|  '|.  ||  ||  \n |   |||  ||        ||| |||    ||   ||   ||  ||  ||  \n.|.   '|   '|...'    |   |     '|.'  '|..|' .||. ||. \n\n+--- Newton")
-file = json.load(open('sudo.json'))
-tokin = json.load(open('tokin.json','r'))['TOKIN']
-bot = NewtonBot.TeleBot(tokin)
+TOKIN = json.load(open('tokin.json', 'r'))['TOKIN']
+bot = NewtonBot.TeleBot(TOKIN)
+
+
+def Add_ID(ID, VAR):
+    with open('ID.json', 'r+') as file:
+        data = json.load(file)
+        if str(ID)+VAR not in data:
+            data.append(str(ID)+VAR)
+            file.seek(0)
+            json.dump(data, file)
+            file.truncate()
+            file.close()
+
+
+def Remove_ID(ID, VAR):
+    with open('ID.json', 'r+') as file:
+        data = json.load(file)
+        data.remove(str(ID)+VAR)
+        file.seek(0)
+        json.dump(data, file)
+        file.truncate()
+        file.close()
+
+
+def Add_Name(PATH, VAR):
+    with open(PATH+'.json', 'r+', encoding='utf8') as file:
+        data = json.load(file)
+        data.append(str(VAR))
+        file.seek(0)
+        json.dump(data, file)
+        file.truncate()
+        file.close()
+
+
+def read(Name):
+    file = open(Name+'.json', 'r')
+    file.close
+    return json.load(file)
+
+
+def write(text, Name):
+    file = open(Name+'.json', 'w')
+    json.dump(text, file)
+    file.close()
 
 
 def NewtonBows(text):
@@ -24,52 +65,10 @@ def NewtonShapes():
     return Arrows[Newton(0, len(Arrows)-1)]+shapes[Newton(0, len(shapes)-1)]
 
 
-def Add_ID(ID, VAR):
-    with open('ID.json', 'r+') as file:
-        data = json.load(file)
-        if str(ID)+VAR not in data:
-            data.append(str(ID)+VAR)
-            file.seek(0)
-            json.dump(data, file)
-            file.truncate()
-
-
-def Remove_ID(ID, VAR):
-    with open('ID.json', 'r+') as file:
-        data = json.load(file)
-        data.remove(str(ID)+VAR)
-        file.seek(0)
-        json.dump(data, file)
-        file.truncate()
-
-
-def Add_Name(PATH, VAR):
-    with open(PATH+'.json', 'r+', encoding='utf8') as file:
-        data = json.load(file)
-        data.append(str(VAR))
-        file.seek(0)
-        json.dump(data, file)
-        file.truncate()
-
-
 @bot.message_handler()
 def start(message):
-    ID_Sudo = file['ID_SUDO']
-
-    def ID_Newton(ID):
-        with open('BotID.json', 'r+') as file:
-            data = json.load(file)
-            if ID not in data:
-                bot.send_message(
-                    ID_Sudo, 'قام : '+message.from_user.first_name+'\nبئستعمال البوت')
-                data.append(ID)
-                file.seek(0)
-                json.dump(data, file)
-                file.truncate()
     msg = message.text
     text = msg.lower()
-    NameChat = bot.get_chat(file['CHAT']).title
-    id_file = str(message.from_user.id)
     Newton1 = text.replace('a', 'Ａ').replace('b', 'Ｂ').replace('c', 'Ｃ').replace('d', 'Ｄ').replace('e', 'Ｅ').replace('f', 'Ｆ').replace('g', 'Ｇ').replace('h', 'Ｈ').replace('i', 'Ｉ').replace('j', 'Ｊ').replace('k', 'Ｋ').replace('l', 'Ｌ').replace('m', 'Ｍ').replace('n', 'Ｎ').replace('o', 'Ｏ').replace('p', 'Ｐ').replace('q', 'Ｑ').replace('r', 'Ｒ').replace('s', 'Ｓ').replace('t', 'Ｔ').replace('u', 'Ｕ').replace('v', 'Ｖ').replace('w', 'Ｗ').replace('x', 'Ｘ').replace('y', 'Ｙ').replace('z', 'Ｚ').replace('ا', 'آ').replace(
         'ب', 'ﭔ').replace('ت', 'ﭥ').replace('ث', 'ﺛ').replace('ج', 'چـ').replace('ح', 'ﺢـ').replace('خ', 'خـ').replace('د', 'ﮈ').replace('ذ', 'ڎ').replace('ر', 'ړ').replace('ز', 'ڒ').replace('س', 'سـّ').replace('ش', 'شًـ').replace('ص', 'ڝـ').replace('ض', 'ڞ').replace('ط', 'طـ').replace('ظ', 'ظـ').replace('ع', 'ﻋ').replace('غ', 'ﻏ').replace('ف', 'ڤـ').replace('ق', 'قـ').replace('ك', 'ﮗ').replace('ل', 'لْـ').replace('م', 'ﻤ').replace('ن', 'ﮢـ').replace('ه', 'ھ').replace('و', 'ۈ').replace('ي', 'ﭜ')
     Newton2 = text.replace('a', 'ａ').replace('b', 'ｂ').replace('c', 'ｃ').replace('d', 'ｄ').replace('e', 'ｅ').replace('f', 'ｆ').replace('g', 'ｇ').replace('h', 'ｈ').replace('i', 'ｉ').replace('j', 'ｊ').replace('k', 'ｋ').replace('l', 'ｌ').replace('m', 'ｍ').replace('n', 'ｎ').replace('o', 'ｏ').replace('p', 'ｐ').replace('q', 'ｑ').replace('r', 'ｒ').replace('s', 'ｓ').replace('t', 'ｔ').replace('u', 'ｕ').replace('v', 'ｖ').replace('w', 'ｗ').replace('x', 'ｘ').replace('y', 'ｙ').replace('z', 'ｚ').replace(
@@ -599,278 +598,307 @@ def start(message):
         ‎‏ㅤ
         ‎‏ㅤ⠀⠀⠀''']
 # End var
-    if message.chat.type == 'private':
-        if GetNewton('https://api.telegram.org/bot'+tokin+'/getChatMember?chat_id='+file['CHAT']+'&user_id='+str(message.from_user.id)).json()['result']['status'] == 'left':
-            bot.send_message(message.from_user.id, '• اهلا بك، '+message.from_user.first_name+'\n\n- في بوت الزخرفةالشامل؛\n\n- استخدام البوت عليك الاشتراك اولاً 🧸💕\n\n- قناة البوت  ' +
-                             file['CHAT']+' 💘🌈 \n\n\n-- -- -- -- - -- -- -- -- -- -- -- -- --\n𝑫𝑬𝑴𝑶𝑵𝑰𝑶𝑺 ༯ 𝒔𝒐𝒖𝒓𝒄𝒆')
-        else:
-            if int(message.from_user.id) == int(file["ID_SUDO"]):
-                if message.text and json.load(open('BotSendAll.json', 'r')):
-                    for i in json.load(open('BotID.json', 'r')):
-                        bot.send_message(i, message.text)
-                    bot.reply_to(message, 'تم الاذاعه الى : ' +
-                                 str(len(json.load(open('BotID.json', 'r')))))
-                    json.dump(False, open('BotImport.json', 'w'))
-                elif message.text and json.load(open('BotImport.json', 'r')) == 'CH':
-                    if '@' in message.text:
-                        bot.send_message(message.chat.id, 'تم اضاف القناة')
-                        files = open('sudo.json', 'r+')
-                        data = json.load(files)
-                        data['CHAT'] = message.text
-                        files.seek(0)
-                        json.dump(data, files)
-                        files.truncate()
-                        json.dump('Newton', open('BotImport.json', 'w'))
-                        os.system('python3 run.py')
-                    else:
-                        bot.send_message(message.from_user.id, 'المعرف خاطأ')
-                        json.dump('Newton', open('BotImport.json', 'w'))
-                elif message.text and json.load(open('BotImport.json', 'r')) == 'ID':
-                    try:
-                        ID_s = str(message.text)
+    try:
+        if message.chat.type == 'private':
+            def ID_Newton(ID):
+                with open('BotID.json', 'r+') as file:
+                    data = json.load(file)
+                    if ID not in data:
                         bot.send_message(
-                            message.chat.id, 'تم اضاف المطور بنجاح')
-                        files = open('sudo.json', 'r+')
-                        data = json.load(files)
-                        data['ID_SUDO'] = ID_s
-                        files.seek(0)
-                        json.dump(data, files)
-                        files.truncate()
-                        json.dump('Newton', open('BotImport.json', 'w'))
+                            read('sudo')['ID_SUDO'], 'قام : '+message.from_user.first_name+'\nبئستعمال البوت')
+                        data.append(ID)
+                        file.seek(0)
+                        json.dump(data, file)
+                        file.truncate()
+                        file.close()
+            if GetNewton('https://api.telegram.org/bot'+TOKIN+'/getChatMember?chat_id='+read('sudo')['CHAT']+'&user_id='+str(message.from_user.id)).json()['result']['status'] == 'left':
+                bot.send_message(message.from_user.id, '• اهلا بك، '+message.from_user.first_name+'\n\n- في بوت الزخرفةالشامل؛\n\n- استخدام البوت عليك الاشتراك اولاً 🧸💕\n\n- قناة البوت  ' +
+                                 read('sudo')['CHAT']+' 💘🌈 \n\n\n-- -- -- -- - -- -- -- -- -- -- -- -- --\n𝑫𝑬𝑴𝑶𝑵𝑰𝑶𝑺 ༯ 𝒔𝒐𝒖𝒓𝒄𝒆')
+            else:
+                if message.from_user.id == int(read('sudo')["ID_SUDO"]):
+                    if message.text and read('BotSendAll'):
+                        for i in read('BotID'):
+                            bot.send_message(i, message.text)
+                        bot.reply_to(message, 'تم الاذاعه الى : ' +
+                                     str(len(read('BotID'))))
+                        write(False, 'BotImport')
+                    elif message.text and read('BotImport') == 'CH':
+                        if '@' in message.text:
+                            bot.send_message(message.chat.id, 'تم اضاف القناة')
+                            files = open('sudo.json', 'r+')
+                            data = json.load(files)
+                            data['CHAT'] = message.text
+                            files.seek(0)
+                            json.dump(data, files)
+                            files.truncate()
+                            files.close()
+                            write('Newton', 'BotImport')
+                        else:
+                            bot.send_message(
+                                message.from_user.id, 'المعرف خاطأ')
+                            write('Newton', 'BotImport')
+                    elif message.text and read('BotImport') == 'ID':
+                        try:
+                            files = open('sudo.json', 'r+')
+                            data = json.load(files)
+                            data['ID_SUDO'] = int(message.text)
+                            files.seek(0)
+                            json.dump(data, files)
+                            files.truncate()
+                            files.close()
+                            bot.send_message(
+                                message.chat.id, 'تم اضاف المطور بنجاح')
+                            bot.send_message(
+                                message.text, 'تم تحويل ملكيت البوت اليك ارسل /start لاضهار الاوامر لك')
+                            write('Newton', 'BotImport')
+                        except Exception as e:
+                            bot.send_message(
+                                message.from_user.id, 'الايدي خاطأ')
+                            write('Newton', 'BotImport')
+                    elif message.text and read('BotImport') == 'Boy':
+                        bot.send_message(message.chat.id, 'تم اضاف النبذه')
+                        Add_Name('Boy', message.text)
+                        write('Newton', 'BotImport')
+                    elif message.text and read('BotImport') == 'Name':
+                        bot.send_message(message.chat.id, 'تم اضاف الاسم')
+                        Add_Name('Name', message.text)
+                        write('Newton', 'BotImport')
+                    elif message.text and read('BotImport') == 'Su':
+                        bot.send_message(message.chat.id, 'تم اضاف الاختصار')
+                        Add_Name('Su', message.text)
+                        write('Newton', 'BotImport')
+                    elif message.text == '/start':
+                        markup = ReplyKeyboardMarkup()
+                        itembtn1 = KeyboardButton('المشتركين')
+                        itembtn2 = KeyboardButton('اذاعة')
+                        itembtn3 = KeyboardButton('اضافة اسماء')
+                        itembtn4 = KeyboardButton('اضافة نبذات')
+                        itembtn5 = KeyboardButton('اضافة اختصارات')
+                        itembtn6 = KeyboardButton('تغير قناة الاشتراك')
+                        itembtn7 = KeyboardButton('تحويل ملكية البوت')
+                        itembtn8 = KeyboardButton('اخفاء الكيبورد')
+                        markup.row(itembtn1, itembtn2)
+                        markup.row(itembtn3, itembtn4, itembtn5)
+                        markup.row(itembtn6, itembtn7)
+                        markup.row(itembtn8)
                         bot.send_message(
-                            file["ID_SUDO"], 'تم تحويل ملكيت البوت اليك ارسل /start لاضهار الاوامر لك')
-                        json.dump('Newton', open('BotImport.json', 'w'))
-                        os.system('python3 run.py')
-                    except Exception:
-                        bot.send_message(message.from_user.id, 'الايدي خاطأ')
-                        json.dump('Newton', open('BotImport.json', 'w'))
-                elif message.text and json.load(open('BotImport.json', 'r')) == 'Boy':
-                    bot.send_message(message.chat.id, 'تم اضاف النبذه')
-                    Add_Name('Boy', message.text)
-                    json.dump('Newton', open('BotImport.json', 'w'))
-                elif message.text and json.load(open('BotImport.json', 'r')) == 'Name':
-                    bot.send_message(message.chat.id, 'تم اضاف الاسم')
-                    Add_Name('Name', message.text)
-                    json.dump('Newton', open('BotImport.json', 'w'))
-                elif message.text and json.load(open('BotImport.json', 'r')) == 'Su':
-                    bot.send_message(message.chat.id, 'تم اضاف الاختصار')
-                    Add_Name('Su', message.text)
-                    json.dump('Newton', open('BotImport.json', 'w'))
-                elif message.text == '/start':
-                    markup = ReplyKeyboardMarkup()
-                    itembtn1 = KeyboardButton('المشتركين')
-                    itembtn2 = KeyboardButton('اذاعة')
-                    itembtn3 = KeyboardButton('اضافة اسماء')
-                    itembtn4 = KeyboardButton('اضافة نبذات')
-                    itembtn5 = KeyboardButton('اضافة اختصارات')
-                    itembtn6 = KeyboardButton('تغير قناة الاشتراك الاجباري')
-                    itembtn7 = KeyboardButton('تحويل ملكية البوت')
-                    itembtn8 = KeyboardButton('اخفاء الكيبورد')
-                    markup.row(itembtn1, itembtn2)
-                    markup.row(itembtn3, itembtn4, itembtn5)
-                    markup.row(itembtn6, itembtn7)
-                    markup.row(itembtn8)
-                    bot.send_message(
-                        message.from_user.id, "مرحباً عزيزي المطور اليك الاوامر", reply_markup=markup)
-                elif message.text == 'تغير قناة الاشتراك الاجباري':
-                    bot.send_message(
-                        message.chat.id, 'ارسل معرف القناة الجديده \n قبل ارسال المعرف تئكد ان البوت ادمن في القناة الجديده')
-                    json.dump('CH', open('BotImport.json', 'w'))
-                elif message.text == 'تحويل ملكية البوت':
-                    bot.send_message(
-                        message.chat.id, 'ارسل ايدي المطور الجديد')
-                    json.dump('CH', open('BotImport.json', 'w'))
-                elif message.text == 'المشتركين':
-                    bot.send_message(message.from_user.id, 'عدد المشتركين في البوت : ' +
-                                     str(len(json.load(open('BotID.json', 'r')))))
-                elif message.text == 'اضافة اسماء':
+                            message.from_user.id, "مرحباً عزيزي المطور اليك الاوامر", reply_markup=markup)
+                    elif message.text == 'تغير قناة الاشتراك':
+                        bot.send_message(
+                            message.chat.id, 'ارسل معرف القناة الجديده \n قبل ارسال المعرف تئكد ان البوت ادمن في القناة الجديده')
+                        write('CH', 'BotImport')
+                    elif message.text == 'تحويل ملكية البوت':
+                        bot.send_message(
+                            message.chat.id, 'ارسل ايدي المطور الجديد')
+                        write('ID', 'BotImport')
+                    elif message.text == 'المشتركين':
+                        bot.send_message(message.from_user.id, 'عدد المشتركين في البوت : ' +
+                                         str(len(read('BotID'))))
+                    elif message.text == 'اضافة اسماء':
+                        bot.send_message(message.from_user.id,
+                                         'ارسل الاسم ليتم اضافتة')
+                        write('Name', 'BotImport')
+                    elif message.text == 'اضافة نبذات':
+                        bot.send_message(message.from_user.id,
+                                         'ارسل النبذه ليتم اضافتة')
+                        write('Boy', 'BotImport')
+                    elif message.text == 'اضافة اختصارات':
+                        bot.send_message(message.from_user.id,
+                                         'ارسل اختصارات ليتم اضافتة')
+                        write('Su', 'BotImport')
+                    elif message.text == 'اذاعة':
+                        bot.send_message(message.from_user.id,
+                                         'ارسل النص الذي تريد اذاعتة')
+                        write(True, 'BotSendAll')
+                    elif message.text == 'اخفاء الكيبورد':
+                        bot.send_message(message.from_user.id, 'تم اخفاء الكيبورد لأضهار \n الكيبورد ارسل /start',
+                                         reply_markup=ReplyKeyboardRemove(selective=False))
+                if message.text == '/start':
+                    file0 = open('sudo.json', 'r')
+                    filej = json.load(file0)
+                    NameChat = bot.get_chat(filej['CHAT']).title
+                    keyboard = [[InlineKeyboardButton(message.from_user.first_name, callback_data='#')], [InlineKeyboardButton('زخرفــهـ الاســم', callback_data='ZH'), InlineKeyboardButton('بايو انــستا', callback_data='boy')], [InlineKeyboardButton('رمــوز وارقــام', callback_data='Num And Pass')], [InlineKeyboardButton('اسماء جاهزه', callback_data='Name Completing'), InlineKeyboardButton(
+                        'اسماء ببجي', callback_data='Name PUBG')], [InlineKeyboardButton('جمالي من 10', callback_data='%')], [InlineKeyboardButton('نبذه جاهزه', callback_data='boyn'), InlineKeyboardButton('اختصارات', callback_data='Shortcuts')], [InlineKeyboardButton(NameChat, url='https://t.me/'+read('sudo')['CHAT'].replace('@', ''))]]
+                    bot.send_message(message.from_user.id, '• اهلا بك، '+message.from_user.first_name +
+                                     '\n\n- في بوت الزخرفةالشامل؛)\n\n- يمكنك الزخرفه باللغه الانكليزيه واللغه العربيه 🧸💕\n\n- البوت الاول من نوعه في التلكرام  💘🌈 \n\n-- -- -- -- - -- -- -- -- -- -- -- -- --\n𝑫𝑬𝑴𝑶𝑵𝑰𝑶𝑺 ༯ 𝒔𝒐𝒖𝒓𝒄𝒆', reply_markup=InlineKeyboardMarkup(keyboard))
+                    ID_Newton(message.from_user.id)
+                    file0.close()
+                elif str(message.from_user.id)+'ZH' in read('ID'):
                     bot.send_message(message.from_user.id,
-                                     'ارسل الاسم ليتم اضافتة')
-                    json.dump('Name', open('BotImport.json', 'w'))
-                elif message.text == 'اضافة نبذات':
+                                     NewtonBows(Newton1)+NewtonShapes())
                     bot.send_message(message.from_user.id,
-                                     'ارسل النبذه ليتم اضافتة')
-                    json.dump('Boy', open('BotImport.json', 'w'))
-                elif message.text == 'اضافة اختصارات':
+                                     NewtonBows(Newton2)+NewtonShapes())
                     bot.send_message(message.from_user.id,
-                                     'ارسل اختصارات ليتم اضافتة')
-                    json.dump('Su', open('BotImport.json', 'w'))
-                elif message.text == 'اذاعة':
+                                     NewtonBows(Newton3)+NewtonShapes())
                     bot.send_message(message.from_user.id,
-                                     'ارسل النص الذي تريد اذاعتة')
-                    json.dump(True, open('BotSendAll.json', 'w'))
-                elif message.text == 'اخفاء الكيبورد':
-                    bot.send_message(message.from_user.id, 'تم اخفاء الكيبورد لأضهار \n الكيبورد ارسل /start',
-                                     reply_markup=ReplyKeyboardRemove(selective=False))
-            if message.text == '/start':
-                keyboard = [[InlineKeyboardButton(message.from_user.first_name, callback_data='#')], [InlineKeyboardButton('زخرفــهـ الاســم', callback_data='ZH'), InlineKeyboardButton('بايو انــستا', callback_data='boy')], [InlineKeyboardButton('رمــوز وارقــام', callback_data='Num And Pass')], [InlineKeyboardButton('اسماء جاهزه', callback_data='Name Completing'), InlineKeyboardButton(
-                    'اسماء ببجي', callback_data='Name PUBG')], [InlineKeyboardButton('جمالي من 10', callback_data='%')], [InlineKeyboardButton('نبذه جاهزه', callback_data='boyn'), InlineKeyboardButton('اختصارات', callback_data='Shortcuts')], [InlineKeyboardButton(NameChat, url='https://t.me/'+file['CHAT'].replace('@', ''))]]
-                bot.send_message(message.from_user.id, '• اهلا بك، '+message.from_user.first_name +
-                                    '\n\n- في بوت الزخرفةالشامل؛)\n\n- يمكنك الزخرفه باللغه الانكليزيه واللغه العربيه 🧸💕\n\n- البوت الاول من نوعه في التلكرام  💘🌈 \n\n-- -- -- -- - -- -- -- -- -- -- -- -- --\n𝑫𝑬𝑴𝑶𝑵𝑰𝑶𝑺 ༯ 𝒔𝒐𝒖𝒓𝒄𝒆', reply_markup=InlineKeyboardMarkup(keyboard))
-                ID_Newton(message.from_user.id)
-            elif id_file+'ZH' in json.load(open('ID.json', 'r')):
-                bot.send_message(message.from_user.id,
-                                    NewtonBows(Newton1)+NewtonShapes())
-                bot.send_message(message.from_user.id,
-                                    NewtonBows(Newton2)+NewtonShapes())
-                bot.send_message(message.from_user.id,
-                                    NewtonBows(Newton3)+NewtonShapes())
-                bot.send_message(message.from_user.id,
-                                    NewtonBows(Newton4)+NewtonShapes())
-                bot.send_message(message.from_user.id,
-                                    NewtonBows(Newton5)+NewtonShapes())
-                bot.send_message(message.from_user.id,
-                                    NewtonBows(Newton6)+NewtonShapes())
-                bot.send_message(message.from_user.id,
-                                    NewtonBows(Newton7)+NewtonShapes())
-                bot.send_message(message.from_user.id,
-                                    NewtonBows(Newton8)+NewtonShapes())
-                bot.send_message(message.from_user.id,
-                                    NewtonBows(Newton9)+NewtonShapes())
-                bot.send_message(message.from_user.id,
-                                    NewtonBows(Newton10)+NewtonShapes())
-                bot.send_message(message.from_user.id,
-                                    NewtonBows(Newton11)+NewtonShapes())
-                bot.send_message(message.from_user.id,
-                                    NewtonBows(Newton12)+NewtonShapes())
-                bot.send_message(message.from_user.id,
-                                    NewtonBows(Newton13)+NewtonShapes())
-                bot.send_message(message.from_user.id,
-                                    NewtonBows(Newton14)+NewtonShapes())
-                bot.send_message(message.from_user.id,
-                                    NewtonBows(Newton15)+NewtonShapes())
-                bot.send_message(message.from_user.id,
-                                    NewtonBows(Newton16)+NewtonShapes())
-                bot.send_message(message.from_user.id,
-                                    NewtonBows(Newton17)+NewtonShapes())
-                bot.send_message(message.from_user.id,
-                                    NewtonBows(Newton18)+NewtonShapes())
-                bot.send_message(message.from_user.id,
-                                    NewtonBows(Newton19)+NewtonShapes())
-                bot.send_message(message.from_user.id,
-                                    NewtonBows(Newton20)+NewtonShapes())
-                Remove_ID(id_file, 'ZH')
-            elif id_file+'boy' in json.load(open('ID.json', 'r')):
-                NewtonNum = 0
-                while True:
+                                     NewtonBows(Newton4)+NewtonShapes())
                     bot.send_message(message.from_user.id,
-                                        Newtonboy[Newton(0, len(Newtonboy)-1)].replace('NewtonText', text))
-                    if NewtonNum == 20:
-                        break
-                    NewtonNum = NewtonNum + 1
-                Remove_ID(id_file, 'boy')
+                                     NewtonBows(Newton5)+NewtonShapes())
+                    bot.send_message(message.from_user.id,
+                                     NewtonBows(Newton6)+NewtonShapes())
+                    bot.send_message(message.from_user.id,
+                                     NewtonBows(Newton7)+NewtonShapes())
+                    bot.send_message(message.from_user.id,
+                                     NewtonBows(Newton8)+NewtonShapes())
+                    bot.send_message(message.from_user.id,
+                                     NewtonBows(Newton9)+NewtonShapes())
+                    bot.send_message(message.from_user.id,
+                                     NewtonBows(Newton10)+NewtonShapes())
+                    bot.send_message(message.from_user.id,
+                                     NewtonBows(Newton11)+NewtonShapes())
+                    bot.send_message(message.from_user.id,
+                                     NewtonBows(Newton12)+NewtonShapes())
+                    bot.send_message(message.from_user.id,
+                                     NewtonBows(Newton13)+NewtonShapes())
+                    bot.send_message(message.from_user.id,
+                                     NewtonBows(Newton14)+NewtonShapes())
+                    bot.send_message(message.from_user.id,
+                                     NewtonBows(Newton15)+NewtonShapes())
+                    bot.send_message(message.from_user.id,
+                                     NewtonBows(Newton16)+NewtonShapes())
+                    bot.send_message(message.from_user.id,
+                                     NewtonBows(Newton17)+NewtonShapes())
+                    bot.send_message(message.from_user.id,
+                                     NewtonBows(Newton18)+NewtonShapes())
+                    bot.send_message(message.from_user.id,
+                                     NewtonBows(Newton19)+NewtonShapes())
+                    bot.send_message(message.from_user.id,
+                                     NewtonBows(Newton20)+NewtonShapes())
+                    Remove_ID(str(message.from_user.id), 'ZH')
+                elif str(message.from_user.id)+'boy' in read('ID'):
+                    NewtonNum = 0
+                    while True:
+                        bot.send_message(message.from_user.id,
+                                         Newtonboy[Newton(0, len(Newtonboy)-1)].replace('NewtonText', text))
+                        if NewtonNum == 20:
+                            break
+                        NewtonNum = NewtonNum + 1
+                    Remove_ID(str(message.from_user.id), 'boy')
+    except Exception as e:
+        bot.send_message(read('sudo')['ID_SUDO'], e)
 
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback(call):
-    NameChat = bot.get_chat(file['CHAT']).title
-    if GetNewton('https://api.telegram.org/bot'+tokin+'/getChatMember?chat_id='+file['CHAT']+'&user_id='+str(call.from_user.id)).json()['result']['status'] == 'left':
-        bot.send_message(call.from_user.id, '• اهلا بك، '+call.from_user.first_name+'\n\n- في بوت الزخرفةالشامل؛\n\n- استخدام البوت عليك الاشتراك اولاً 🧸💕\n\n- قناة البوت  ' +
-                         file['CHAT']+' 💘🌈 \n\n\n-- -- -- -- - -- -- -- -- -- -- -- -- --\n𝑫𝑬𝑴𝑶𝑵𝑰𝑶𝑺 ༯ 𝒔𝒐𝒖𝒓𝒄𝒆')
-    else:
-        if call.data == 'home':
-            keyboard = [[InlineKeyboardButton(call.from_user.first_name, callback_data='#')], [InlineKeyboardButton('زخرفــهـ الاســم', callback_data='ZH'), InlineKeyboardButton('بايو انــستا', callback_data='boy')], [InlineKeyboardButton('رمــوز وارقــام', callback_data='Num And Pass')], [InlineKeyboardButton('اسماء جاهزه', callback_data='Name Completing'), InlineKeyboardButton(
-                'اسماء ببجي', callback_data='Name PUBG')], [InlineKeyboardButton('جمالي من 10', callback_data='%')], [InlineKeyboardButton('نبذه جاهزه', callback_data='boyn'), InlineKeyboardButton('اختصارات', callback_data='Shortcuts')], [InlineKeyboardButton(NameChat, url='https://t.me/'+file['CHAT'].replace('@', ''))]]
-            bot.edit_message_text('• اهلا بك، '+call.from_user.first_name +
-                                  '\n\n- في بوت الزخرفةالشامل؛)\n\n- يمكنك الزخرفه باللغه الانكليزيه واللغه العربيه 🧸💕\n\n- البوت الاول من نوعه في التلكرام  💘🌈 \n\n-- -- -- -- - -- -- -- -- -- -- -- -- --\n𝑫𝑬𝑴𝑶𝑵𝑰𝑶𝑺 ༯ 𝒔𝒐𝒖𝒓𝒄𝒆', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup(keyboard))
-        elif call.data == '#':
-            bot.send_message(call.from_user.id, 'you id : ' +
-                             str(call.from_user.id))
-        elif call.data == 'ZH':
-            bot.send_message(call.from_user.id, 'حسناً عزيزي ' +
-                             call.from_user.first_name+'\nارسل اسمك ليتم زخرفته')
-            Add_ID(call.from_user.id, 'ZH')
-        elif call.data == 'boy':
-            bot.send_message(call.from_user.id, 'حسناً عزيزي ' +
-                             call.from_user.first_name+'\nارسل النص لتحويله الى بايو انستا')
-            Add_ID(call.from_user.id, 'boy')
-        elif call.data == 'Num And Pass':
-            bot.edit_message_text('اختر طلبك من الازرار الموجوده في الاسفل', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('الصفحة الرئيسية', callback_data='home')], [
-                                  InlineKeyboardButton('رموز', callback_data='pass'), InlineKeyboardButton('ارقام', callback_data='num')], [InlineKeyboardButton(NameChat, url='https://t.me/'+file['CHAT'].replace('@', ''))]]))
-        elif call.data == 'pass':
-            bot.edit_message_text('''
-                ———————×———————
-                - 𖣨 ، ෴ ، 𖡺  ، 𖣐 ، ✜ ، ✘ ، 𖡻 ،
-                - ༄ ، ༺༻ ، ༽༼ ،  ╰☆╮،  
-                - ɵ̷᷄ˬɵ̷᷅ ، ‏⠉̮⃝ ، ࿇࿆ ، ꔚ، ま ، ☓ ،
-                {𓆉 . 𓃠 .𓅿 . 𓃠 . 𓃒 . 𓅰 . 𓃱 . 𓅓 . 𐂃  . ꕥ  . ⌘ . ♾ .    ꙰  .  . ᤑ .  ﾂ .
-                ———————×———————
-                ✦ ,✫ ,✯, ✮ ,✭ ,✰, ✬ ,✧, ✤, ❅ , 𒀭,✵ , ✶ , ✷ , ✸ , ✹ ,⧫, . 𐂂 }
-                -〘 𖢐 ، 𒍦 ، 𒍧 ، 𖢣 ، 𝁫 ، 𒍭 ، 𝁅 ، 𝁴 ، 𒍮 ، 𝁵 ، 𝀄 ، 𓏶 ، 𓏧 ، 𓏷 ، 𓏯 ، 𓏴 ، 𓏳 ، 𓏬 ، 𓏦 ، 𓏵 ، 𓏱 ، ᳱ ، ᯼ ، 𐃕 ، ᯥ ، ᯤ ، ᯾ ، ᳶ ، ᯌ ، ᢆ ،
-                ᥦ ، ᨙ ، ᨚ  ، ᨔ  ، ⏢ ، ⍨ ، ⍃ ، ⏃ ، ⍦ ، ⏕ ، ⏤ ، ⏁ ، ⏂ ، ⏆ ، ⌳ ، ࿅ ، ࿕ ، ࿇ ، ᚙ ، ࿊ ، ࿈ ، ྿ ،
-                ࿂ ، ࿑ ،  ᛥ ، ࿄ ، 𐀁 ، 𐀪 ، 𐀔 ، 𐀴 ، 𐀤 ، 𐀦 ، 𐀂 ، 𐀣 ، 𐀢 ، 𐀶 ، 𐀷 ، 𐂭 ، 𐂦 ، 𐂐 ، 𐂅 ، 𐂡 ، 𐂢 ، 𐂠 ، 𐂓 ، 𐂑 ، 𐃸 ، 𐃶 ، 𐂴 ، 𐃭 ، 𐃳 ، 𐃣 ، 𐂰 ، 𐃟 ، 𐃐 ، 𐃙 ، 𐃀 ، 𐇮 ، 𐇹 ، 𐇲 ، 𐇩 ، 𐇪 ، 𐇶 ، 𐇻 ، 𐇡 ، 𐇸 ، 𐇣 ، 𐇤 ، 𐎅 ، 𐏍 ، 𐎃 ، 𐏒 ، 𐎄 ، 𐏕 〙.
-                ╔ ╗. 𓌹  𓌺 .〝  〞. ‹ ›  .「  」. ‌‏𓂄‏ ‌‌‏𓂁
-                〖 〗. 《》 .  < > . « »  . ﹄﹃
-                ———————×———————
-                𓅄𓅅𓅆𓅇𓅈𓅉𓅊𓅋𓅌𓅍𓅎𓅏𓅐𓅑𓅒𓅓𓅔𓅕𓅖𓅗𓅘𓅙𓅚𓅛𓅜𓅝𓅞𓅟𓅠𓅡𓅢𓅣𓅤𓅥𓅦𓅧𓅨𓅩𓅫𓅬𓅭𓅮𓅯𓅰𓅱𓅲𓅳𓅴‏𓅵𓅶𓅷𓅸𓅹𓅺𓅻☤𓅾𓅿𓆀𓆁𓆂‏𓀀𓀁𓀂𓀃𓀄𓀅𓀆𓀇𓀈𓀉𓀊𓀋𓀌𓀍𓀎𓀏𓀐𓀑𓀒𓀓𓀔𓀕𓀖𓀗𓀘𓀙𓀚𓀛𓀜𓀝𓀞𓀟𓀠𓀡𓀢𓀣𓀤𓀥𓀦𓀧𓀨𓀩𓀪𓀫𓀬𓀭𓀮𓀯𓀰𓀱𓀲𓀳𓀴𓀵𓀶𓀷𓀸𓀹𓀺𓀻𓀼𓀽𓀾𓀿𓁀𓁁𓁂𓁃𓁄𓁅𓁆𓁇𓁈𓁉𓁊𓁋𓁌𓁍𓁎𓁏𓁐𓁑𓁒𓁓𓁔𓁕𓁖𓁗𓁘𓁙𓁚𓁛𓁜𓁝𓁞𓁟𓁠𓁡𓁢𓁣𓁤𓁥𓁦𓁧𓁨𓁩𓁪𓁫𓁬𓁭𓁮𓁯𓁰𓁱𓁲𓁳𓁴𓁵𓁶𓁷𓁸𓁹𓁺𓁻𓁼𓁽𓁾𓁿𓂀𓂅𓂆𓂇𓂈𓂉𓂊𓂋𓂌𓂍𓂎𓂏𓂐𓂑𓂒𓂓𓂔𓂕𓂖𓂗𓂘𓂙𓂚𓂛𓂜𓂝𓂞𓂟𓂠𓂡𓂢𓂣𓂤𓂥𓂦𓂧𓂨𓂩𓂪𓂫𓂬𓂭𓂮𓂯𓂰𓂱𓂲𓂳𓂴𓂵𓂶𓂷𓂸𓂺𓂻𓂼𓂽𓂾𓂿𓃀𓃁𓃂𓃃𓃅𓃆𓃇𓃈𓃉𓃊𓃋𓃌𓃍𓃎𓃏𓃐𓃑𓃒𓃓𓃔𓃕𓃖𓃗𓃘𓃙𓃚𓃛𓃜𓃝𓃞𓃟𓃠𓃡𓃢𓃣𓃤𓃥𓃦𓃧𓃨𓃩𓃪𓃫𓃬𓃭𓃮𓃯𓃰𓃱𓃲𓃳𓃴𓃵𓃶𓃷𓃸𓃹𓃺𓃻𓃼𓃽𓃾𓃿𓄀𓄁𓄂𓄃𓄄𓄅𓄆𓄇𓄈𓄉𓄊𓄋𓄌𓄍𓄎𓄏𓄐𓄑𓄒𓄓𓄔𓄕𓄖𓄙𓄚𓄛𓄜𓄝𓄞𓄟𓄠𓄡𓄢𓄣𓄤𓄥𓄦𓄧𓄨𓄩𓄪𓄫𓄬𓄭𓄮𓄯𓄰𓄱𓄲𓄳𓄴𓄵𓄶𓄷𓄸𓄹𓄺𓄼𓄽𓄾𓄿𓅀𓅁𓅂𓅃𓏕𓏖𓏗𓏘𓏙𓏚𓏛𓏜𓏝𓏞𓏟𓏠𓏡𓏢𓏣𓏤𓏥𓏦𓏧𓏨𓏩𓏪𓏫𓏬𓏭𓏮𓏯𓏰𓏱𓏲𓏳𓏴𓏶𓏷𓏸𓏹𓏺𓏻𓏼𓏽𓏾𓏿𓐀𓐁𓐂𓐃𓐄𓐅𓐆
-                ———————×———————''', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('الصفحة الرئيسية', callback_data='home')], [InlineKeyboardButton('رموز', callback_data='pass'), InlineKeyboardButton('ارقام', callback_data='num')], [InlineKeyboardButton(NameChat, url='https://t.me/'+file['CHAT'].replace('@', ''))]]))
-        elif call.data == 'num':
-            bot.edit_message_text('''
-                ———————×———————
-                ₁ ₂ ₃ ₄ ₅ ₆ ₇ ₈ ₉ ₀
-                𝟏 𝟐 𝟑 𝟒 𝟓 𝟔 𝟕 𝟖 𝟗 𝟎
-                𝟭 𝟮 𝟯 𝟰 𝟱 𝟲 𝟳 𝟴 𝟵 𝟬
-                ①②③④⑤⑥⑦⑧⑨⓪
-                ❶❷❸❹❺❻❼❽❾⓿
-                ⓫⓬⓭⓮⓯⓰⓱⓲⓳⓴
-                ———————×———————
-                𝟶 𝟷 𝟸 𝟹 𝟺 𝟻 𝟼 𝟽 𝟾  𝟿
-                ? 𝟙  𝟚  𝟛  𝟜  𝟝  𝟞  𝟟  𝟠 𝟡
-                𝟬 𝟭  𝟮  𝟯  𝟰  𝟱   𝟲  𝟳  𝟴  𝟵  
-                𝟎  𝟏  𝟐  𝟑  𝟒   𝟓   𝟔  𝟕   𝟖   𝟗
-                ０ １ ２ ３ ４ ５ ６ ７８９
-                ———————×———————''', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('الصفحة الرئيسية', callback_data='home')], [InlineKeyboardButton('رموز', callback_data='pass'), InlineKeyboardButton('ارقام', callback_data='num')], [InlineKeyboardButton(NameChat, url='https://t.me/'+file['CHAT'].replace('@', ''))]]))
-        elif call.data == 'Name Completing':
-            array = json.load(open('Name.json', 'r', encoding='utf8'))
-            bot.edit_message_text(array[Newton(0, len(array)-1)], call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(
-                'Newxt', callback_data='Name Completing'), InlineKeyboardButton('Home', callback_data='home')], [InlineKeyboardButton(NameChat, url='https://t.me/'+file['CHAT'].replace('@', ''))]]))
-        elif call.data == 'Name PUBG':
-            array = json.load(open('Name PUBG.json', 'r', encoding='utf8'))
-            bot.edit_message_text(array[Newton(0, len(
-                array)-1)], call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Newxt', callback_data='Name PUBG'), InlineKeyboardButton('Home', callback_data='home')], [InlineKeyboardButton(NameChat, url='https://t.me/'+file['CHAT'].replace('@', ''))]]))
-        elif call.data == 'boyn':
-            array = json.load(open('Boy.json', 'r', encoding='utf8'))
-            bot.edit_message_text(array[Newton(0, len(
-                array)-1)], call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Newxt', callback_data='boyn'), InlineKeyboardButton('Home', callback_data='home')], [InlineKeyboardButton(NameChat, url='https://t.me/'+file['CHAT'].replace('@', ''))]]))
-        elif call.data == 'Shortcuts':
-            array = json.load(open('Su.json', 'r', encoding='utf8'))
-            bot.edit_message_text(array[Newton(0, len(
-                array)-1)], call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Newxt', callback_data='Shortcuts'), InlineKeyboardButton('Home', callback_data='home')], [InlineKeyboardButton(NameChat, url='https://t.me/'+file['CHAT'].replace('@', ''))]]))
-        elif call.data == '%':
-            x = Newton(0, 10)
-            if x == 0:
-                bot.edit_message_text('ولله يا '+call.from_user.first_name +
-                                      ' اخاف اكلك/ج نسبت الجمال صفر من عشره وتزعل', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('القائمة الرئيسية', callback_data='home')]]))
-            elif x == 1:
-                bot.edit_message_text(
-                    'حبي '+call.from_user.first_name+' جمال/ك/ج اعله من الصفر بواحد', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('القائمة الرئيسية', callback_data='home')]]))
-            elif x == 2:
-                bot.edit_message_text('اف يا ' +
-                                      call.from_user.first_name+' صلوات كمر بس النسبه ثنين من عشره', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('القائمة الرئيسية', callback_data='home')]]))
-            elif x == 3:
-                bot.edit_message_text('شكلك/ج ' +
-                                      call.from_user.first_name+' جمال/ك/ج 3 من 10', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('القائمة الرئيسية', callback_data='home')]]))
-            elif x == 4:
-                bot.edit_message_text('اكل/ك/ج '+call.from_user.first_name +
-                                      ' شني ام/ك/ج متنسيه بفاصوليه وطلعت اشو لا انت من الصاكين ولا من الزرك يعني نسبتك 4 استعمل صابون ركي', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('القائمة الرئيسية', callback_data='home')]]))
-            elif x == 5:
-                bot.edit_message_text('حياتي '+call.from_user.first_name +
-                                      ' انت ازرك عله ابيض يعني رب العالمين خلقك حته يحبوك لزرك ولبيض نسبتك 5 من 10 ', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('القائمة الرئيسية', callback_data='home')]]))
-            elif x == 6:
-                bot.edit_message_text('هاي شنو ول/ك/ج ' +
-                                      call.from_user.first_name+' عابر منطقت الزروكيه يعني 6 من 10', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('القائمة الرئيسية', callback_data='home')]]))
-            elif x == 7:
-                bot.edit_message_text('هاي شنو ول/ك/ج ' +
-                                      call.from_user.first_name+' عابر منطقت الزروكيه يعني 7 من 10', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('القائمة الرئيسية', callback_data='home')]]))
-            elif x == 8:
-                bot.edit_message_text(call.from_user.first_name +
-                                      ' انت يا حلو جمال/ك/ج جمال بزون يعني 8 من 10 فديت ولله', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('القائمة الرئيسية', callback_data='home')]]))
-            elif x == 9:
-                bot.edit_message_text(
-                    call.from_user.first_name+' انت كمر ولله كمر 9 من 10', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('القائمة الرئيسية', callback_data='home')]]))
-            elif x == 10:
-                bot.edit_message_text(call.from_user.first_name +
-                                      ' يحلو ياأبو عيون سود ولله لكعدلك عله الدرب كعود نسبتك 10 من 10 الله يحفظك ويرزقك بالي مثلك بس بتكم الي ', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('القائمة الرئيسية', callback_data='home')]]))
+    try:
+        NameChat = bot.get_chat(read('sudo')['CHAT']).title
+        if GetNewton('https://api.telegram.org/bot'+TOKIN+'/getChatMember?chat_id='+read('sudo')['CHAT']+'&user_id='+str(call.from_user.id)).json()['result']['status'] == 'left':
+            bot.send_message(call.from_user.id, '• اهلا بك، '+call.from_user.first_name+'\n\n- في بوت الزخرفةالشامل؛\n\n- استخدام البوت عليك الاشتراك اولاً 🧸💕\n\n- قناة البوت  ' +
+                             read('sudo')['CHAT']+' 💘🌈 \n\n\n-- -- -- -- - -- -- -- -- -- -- -- -- --\n𝑫𝑬𝑴𝑶𝑵𝑰𝑶𝑺 ༯ 𝒔𝒐𝒖𝒓𝒄𝒆')
+        else:
+            if call.data == 'home':
+                keyboard = [[InlineKeyboardButton(call.from_user.first_name, callback_data='#')], [InlineKeyboardButton('زخرفــهـ الاســم', callback_data='ZH'), InlineKeyboardButton('بايو انــستا', callback_data='boy')], [InlineKeyboardButton('رمــوز وارقــام', callback_data='Num And Pass')], [InlineKeyboardButton('اسماء جاهزه', callback_data='Name Completing'), InlineKeyboardButton(
+                    'اسماء ببجي', callback_data='Name PUBG')], [InlineKeyboardButton('جمالي من 10', callback_data='%')], [InlineKeyboardButton('نبذه جاهزه', callback_data='boyn'), InlineKeyboardButton('اختصارات', callback_data='Shortcuts')], [InlineKeyboardButton(NameChat, url='https://t.me/'+read('sudo')['CHAT'].replace('@', ''))]]
+                bot.edit_message_text('• اهلا بك، '+call.from_user.first_name +
+                                      '\n\n- في بوت الزخرفةالشامل؛)\n\n- يمكنك الزخرفه باللغه الانكليزيه واللغه العربيه 🧸💕\n\n- البوت الاول من نوعه في التلكرام  💘🌈 \n\n-- -- -- -- - -- -- -- -- -- -- -- -- --\n𝑫𝑬𝑴𝑶𝑵𝑰𝑶𝑺 ༯ 𝒔𝒐𝒖𝒓𝒄𝒆', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup(keyboard))
+            elif call.data == '#':
+                bot.send_message(call.from_user.id, 'you id : ' +
+                                 str(call.from_user.id))
+            elif call.data == 'ZH':
+                bot.send_message(call.from_user.id, 'حسناً عزيزي ' +
+                                 call.from_user.first_name+'\nارسل اسمك ليتم زخرفته')
+                Add_ID(call.from_user.id, 'ZH')
+            elif call.data == 'boy':
+                bot.send_message(call.from_user.id, 'حسناً عزيزي ' +
+                                 call.from_user.first_name+'\nارسل النص لتحويله الى بايو انستا')
+                Add_ID(call.from_user.id, 'boy')
+            elif call.data == 'Num And Pass':
+                bot.edit_message_text('اختر طلبك من الازرار الموجوده في الاسفل', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('الصفحة الرئيسية', callback_data='home')], [
+                    InlineKeyboardButton('رموز', callback_data='pass'), InlineKeyboardButton('ارقام', callback_data='num')], [InlineKeyboardButton(NameChat, url='https://t.me/'+read('sudo')['CHAT'].replace('@', ''))]]))
+            elif call.data == 'pass':
+                bot.edit_message_text('''
+                    ———————×———————
+                    - 𖣨 ، ෴ ، 𖡺  ، 𖣐 ، ✜ ، ✘ ، 𖡻 ،
+                    - ༄ ، ༺༻ ، ༽༼ ،  ╰☆╮،  
+                    - ɵ̷᷄ˬɵ̷᷅ ، ‏⠉̮⃝ ، ࿇࿆ ، ꔚ، ま ، ☓ ،
+                    {𓆉 . 𓃠 .𓅿 . 𓃠 . 𓃒 . 𓅰 . 𓃱 . 𓅓 . 𐂃  . ꕥ  . ⌘ . ♾ .    ꙰  .  . ᤑ .  ﾂ .
+                    ———————×———————
+                    ✦ ,✫ ,✯, ✮ ,✭ ,✰, ✬ ,✧, ✤, ❅ , 𒀭,✵ , ✶ , ✷ , ✸ , ✹ ,⧫, . 𐂂 }
+                    -〘 𖢐 ، 𒍦 ، 𒍧 ، 𖢣 ، 𝁫 ، 𒍭 ، 𝁅 ، 𝁴 ، 𒍮 ، 𝁵 ، 𝀄 ، 𓏶 ، 𓏧 ، 𓏷 ، 𓏯 ، 𓏴 ، 𓏳 ، 𓏬 ، 𓏦 ، 𓏵 ، 𓏱 ، ᳱ ، ᯼ ، 𐃕 ، ᯥ ، ᯤ ، ᯾ ، ᳶ ، ᯌ ، ᢆ ،
+                    ᥦ ، ᨙ ، ᨚ  ، ᨔ  ، ⏢ ، ⍨ ، ⍃ ، ⏃ ، ⍦ ، ⏕ ، ⏤ ، ⏁ ، ⏂ ، ⏆ ، ⌳ ، ࿅ ، ࿕ ، ࿇ ، ᚙ ، ࿊ ، ࿈ ، ྿ ،
+                    ࿂ ، ࿑ ،  ᛥ ، ࿄ ، 𐀁 ، 𐀪 ، 𐀔 ، 𐀴 ، 𐀤 ، 𐀦 ، 𐀂 ، 𐀣 ، 𐀢 ، 𐀶 ، 𐀷 ، 𐂭 ، 𐂦 ، 𐂐 ، 𐂅 ، 𐂡 ، 𐂢 ، 𐂠 ، 𐂓 ، 𐂑 ، 𐃸 ، 𐃶 ، 𐂴 ، 𐃭 ، 𐃳 ، 𐃣 ، 𐂰 ، 𐃟 ، 𐃐 ، 𐃙 ، 𐃀 ، 𐇮 ، 𐇹 ، 𐇲 ، 𐇩 ، 𐇪 ، 𐇶 ، 𐇻 ، 𐇡 ، 𐇸 ، 𐇣 ، 𐇤 ، 𐎅 ، 𐏍 ، 𐎃 ، 𐏒 ، 𐎄 ، 𐏕 〙.
+                    ╔ ╗. 𓌹  𓌺 .〝  〞. ‹ ›  .「  」. ‌‏𓂄‏ ‌‌‏𓂁
+                    〖 〗. 《》 .  < > . « »  . ﹄﹃
+                    ———————×———————
+                    𓅄𓅅𓅆𓅇𓅈𓅉𓅊𓅋𓅌𓅍𓅎𓅏𓅐𓅑𓅒𓅓𓅔𓅕𓅖𓅗𓅘𓅙𓅚𓅛𓅜𓅝𓅞𓅟𓅠𓅡𓅢𓅣𓅤𓅥𓅦𓅧𓅨𓅩𓅫𓅬𓅭𓅮𓅯𓅰𓅱𓅲𓅳𓅴‏𓅵𓅶𓅷𓅸𓅹𓅺𓅻☤𓅾𓅿𓆀𓆁𓆂‏𓀀𓀁𓀂𓀃𓀄𓀅𓀆𓀇𓀈𓀉𓀊𓀋𓀌𓀍𓀎𓀏𓀐𓀑𓀒𓀓𓀔𓀕𓀖𓀗𓀘𓀙𓀚𓀛𓀜𓀝𓀞𓀟𓀠𓀡𓀢𓀣𓀤𓀥𓀦𓀧𓀨𓀩𓀪𓀫𓀬𓀭𓀮𓀯𓀰𓀱𓀲𓀳𓀴𓀵𓀶𓀷𓀸𓀹𓀺𓀻𓀼𓀽𓀾𓀿𓁀𓁁𓁂𓁃𓁄𓁅𓁆𓁇𓁈𓁉𓁊𓁋𓁌𓁍𓁎𓁏𓁐𓁑𓁒𓁓𓁔𓁕𓁖𓁗𓁘𓁙𓁚𓁛𓁜𓁝𓁞𓁟𓁠𓁡𓁢𓁣𓁤𓁥𓁦𓁧𓁨𓁩𓁪𓁫𓁬𓁭𓁮𓁯𓁰𓁱𓁲𓁳𓁴𓁵𓁶𓁷𓁸𓁹𓁺𓁻𓁼𓁽𓁾𓁿𓂀𓂅𓂆𓂇𓂈𓂉𓂊𓂋𓂌𓂍𓂎𓂏𓂐𓂑𓂒𓂓𓂔𓂕𓂖𓂗𓂘𓂙𓂚𓂛𓂜𓂝𓂞𓂟𓂠𓂡𓂢𓂣𓂤𓂥𓂦𓂧𓂨𓂩𓂪𓂫𓂬𓂭𓂮𓂯𓂰𓂱𓂲𓂳𓂴𓂵𓂶𓂷𓂸𓂺𓂻𓂼𓂽𓂾𓂿𓃀𓃁𓃂𓃃𓃅𓃆𓃇𓃈𓃉𓃊𓃋𓃌𓃍𓃎𓃏𓃐𓃑𓃒𓃓𓃔𓃕𓃖𓃗𓃘𓃙𓃚𓃛𓃜𓃝𓃞𓃟𓃠𓃡𓃢𓃣𓃤𓃥𓃦𓃧𓃨𓃩𓃪𓃫𓃬𓃭𓃮𓃯𓃰𓃱𓃲𓃳𓃴𓃵𓃶𓃷𓃸𓃹𓃺𓃻𓃼𓃽𓃾𓃿𓄀𓄁𓄂𓄃𓄄𓄅𓄆𓄇𓄈𓄉𓄊𓄋𓄌𓄍𓄎𓄏𓄐𓄑𓄒𓄓𓄔𓄕𓄖𓄙𓄚𓄛𓄜𓄝𓄞𓄟𓄠𓄡𓄢𓄣𓄤𓄥𓄦𓄧𓄨𓄩𓄪𓄫𓄬𓄭𓄮𓄯𓄰𓄱𓄲𓄳𓄴𓄵𓄶𓄷𓄸𓄹𓄺𓄼𓄽𓄾𓄿𓅀𓅁𓅂𓅃𓏕𓏖𓏗𓏘𓏙𓏚𓏛𓏜𓏝𓏞𓏟𓏠𓏡𓏢𓏣𓏤𓏥𓏦𓏧𓏨𓏩𓏪𓏫𓏬𓏭𓏮𓏯𓏰𓏱𓏲𓏳𓏴𓏶𓏷𓏸𓏹𓏺𓏻𓏼𓏽𓏾𓏿𓐀𓐁𓐂𓐃𓐄𓐅𓐆
+                    ———————×———————''', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('الصفحة الرئيسية', callback_data='home')], [InlineKeyboardButton('رموز', callback_data='pass'), InlineKeyboardButton('ارقام', callback_data='num')], [InlineKeyboardButton(NameChat, url='https://t.me/'+read('sudo')['CHAT'].replace('@', ''))]]))
+            elif call.data == 'num':
+                bot.edit_message_text('''
+                    ———————×———————
+                    ₁ ₂ ₃ ₄ ₅ ₆ ₇ ₈ ₉ ₀
+                    𝟏 𝟐 𝟑 𝟒 𝟓 𝟔 𝟕 𝟖 𝟗 𝟎
+                    𝟭 𝟮 𝟯 𝟰 𝟱 𝟲 𝟳 𝟴 𝟵 𝟬
+                    ①②③④⑤⑥⑦⑧⑨⓪
+                    ❶❷❸❹❺❻❼❽❾⓿
+                    ⓫⓬⓭⓮⓯⓰⓱⓲⓳⓴
+                    ———————×———————
+                    𝟶 𝟷 𝟸 𝟹 𝟺 𝟻 𝟼 𝟽 𝟾  𝟿
+                    ? 𝟙  𝟚  𝟛  𝟜  𝟝  𝟞  𝟟  𝟠 𝟡
+                    𝟬 𝟭  𝟮  𝟯  𝟰  𝟱   𝟲  𝟳  𝟴  𝟵  
+                    𝟎  𝟏  𝟐  𝟑  𝟒   𝟓   𝟔  𝟕   𝟖   𝟗
+                    ０ １ ２ ３ ４ ５ ６ ７８９
+                    ———————×———————''', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('الصفحة الرئيسية', callback_data='home')], [InlineKeyboardButton('رموز', callback_data='pass'), InlineKeyboardButton('ارقام', callback_data='num')], [InlineKeyboardButton(NameChat, url='https://t.me/'+read('sudo')['CHAT'].replace('@', ''))]]))
+            elif call.data == 'Name Completing':
+                file = open('Name.json', 'r', encoding='utf8')
+                array = json.load(file)
+                bot.edit_message_text(array[Newton(0, len(array)-1)], call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(
+                    'Newxt', callback_data='Name Completing'), InlineKeyboardButton('Home', callback_data='home')], [InlineKeyboardButton(NameChat, url='https://t.me/'+read('sudo')['CHAT'].replace('@', ''))]]))
+                file.close()
+            elif call.data == 'Name PUBG':
+                file = open('Name PUBG.json', 'r', encoding='utf8')
+                array = json.load(file)
+                bot.edit_message_text(array[Newton(0, len(
+                    array)-1)], call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Newxt', callback_data='Name PUBG'), InlineKeyboardButton('Home', callback_data='home')], [InlineKeyboardButton(NameChat, url='https://t.me/'+read('sudo')['CHAT'].replace('@', ''))]]))
+                file.close()
+            elif call.data == 'boyn':
+                file = open('Boy.json', 'r', encoding='utf8')
+                array = json.load(file)
+                bot.edit_message_text(array[Newton(0, len(
+                    array)-1)], call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Newxt', callback_data='boyn'), InlineKeyboardButton('Home', callback_data='home')], [InlineKeyboardButton(NameChat, url='https://t.me/'+read('sudo')['CHAT'].replace('@', ''))]]))
+                file.close()
+            elif call.data == 'Shortcuts':
+                file = open('Su.json', 'r', encoding='utf8')
+                array = json.load(file)
+                bot.edit_message_text(array[Newton(0, len(
+                    array)-1)], call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Newxt', callback_data='Shortcuts'), InlineKeyboardButton('Home', callback_data='home')], [InlineKeyboardButton(NameChat, url='https://t.me/'+read('sudo')['CHAT'].replace('@', ''))]]))
+                file.close()
+            elif call.data == '%':
+                x = Newton(0, 10)
+                if x == 0:
+                    bot.edit_message_text('ولله يا '+call.from_user.first_name +
+                                          ' اخاف اكلك/ج نسبت الجمال صفر من عشره وتزعل', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('القائمة الرئيسية', callback_data='home')]]))
+                elif x == 1:
+                    bot.edit_message_text(
+                        'حبي '+call.from_user.first_name+' جمال/ك/ج اعله من الصفر بواحد', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('القائمة الرئيسية', callback_data='home')]]))
+                elif x == 2:
+                    bot.edit_message_text('اف يا ' +
+                                          call.from_user.first_name+' صلوات كمر بس النسبه ثنين من عشره', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('القائمة الرئيسية', callback_data='home')]]))
+                elif x == 3:
+                    bot.edit_message_text('شكلك/ج ' +
+                                          call.from_user.first_name+' جمال/ك/ج 3 من 10', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('القائمة الرئيسية', callback_data='home')]]))
+                elif x == 4:
+                    bot.edit_message_text('اكل/ك/ج '+call.from_user.first_name +
+                                          ' شني ام/ك/ج متنسيه بفاصوليه وطلعت اشو لا انت من الصاكين ولا من الزرك يعني نسبتك 4 استعمل صابون ركي', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('القائمة الرئيسية', callback_data='home')]]))
+                elif x == 5:
+                    bot.edit_message_text('حياتي '+call.from_user.first_name +
+                                          ' انت ازرك عله ابيض يعني رب العالمين خلقك حته يحبوك لزرك ولبيض نسبتك 5 من 10 ', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('القائمة الرئيسية', callback_data='home')]]))
+                elif x == 6:
+                    bot.edit_message_text('هاي شنو ول/ك/ج ' +
+                                          call.from_user.first_name+' عابر منطقت الزروكيه يعني 6 من 10', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('القائمة الرئيسية', callback_data='home')]]))
+                elif x == 7:
+                    bot.edit_message_text('هاي شنو ول/ك/ج ' +
+                                          call.from_user.first_name+' عابر منطقت الزروكيه يعني 7 من 10', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('القائمة الرئيسية', callback_data='home')]]))
+                elif x == 8:
+                    bot.edit_message_text(call.from_user.first_name +
+                                          ' انت يا حلو جمال/ك/ج جمال بزون يعني 8 من 10 فديت ولله', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('القائمة الرئيسية', callback_data='home')]]))
+                elif x == 9:
+                    bot.edit_message_text(
+                        call.from_user.first_name+' انت كمر ولله كمر 9 من 10', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('القائمة الرئيسية', callback_data='home')]]))
+                elif x == 10:
+                    bot.edit_message_text(call.from_user.first_name +
+                                          ' يحلو ياأبو عيون سود ولله لكعدلك عله الدرب كعود نسبتك 10 من 10 الله يحفظك ويرزقك بالي مثلك بس بتكم الي ', call.from_user.id, call.message.id, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('القائمة الرئيسية', callback_data='home')]]))
+    except Exception as e:
+        bot.send_message(read('sudo')['ID_SUDO'], e)
 
 
 bot.polling()
