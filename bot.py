@@ -42,8 +42,9 @@ def Add_Name(PATH, VAR):
 
 def read(Name):
     file = open(Name+'.json', 'r')
-    file.close
-    return json.load(file)
+    js = json.load(file)
+    file.close()
+    return js
 
 
 def write(text, Name):
